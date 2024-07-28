@@ -15,7 +15,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Supabase.initialize(
     url: 'https://owwstrluspkpelxrndqv.supabase.co',
-    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im93d3N0cmx1c3BrcGVseHJuZHF2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjEyOTkxNDcsImV4cCI6MjAzNjg3NTE0N30.1blVpAPkKow3CM_VwLRUiEqRlsRlQKcAYBA4D0c7Ku0',
+    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im93d3N0cmx1c3BrcGVseHJuZHF2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjIwNzAwMDEsImV4cCI6MjAzNzY0NjAwMX0._pslnluWjbH4s3PbDubskozkq6i4eoLehIb54g9Yr14',
   );
   runApp(const ProviderScope(child: MyApp()));
 }
@@ -59,7 +59,7 @@ class _HomePageState extends ConsumerState<HomePage> {
       final response = await supabase
           .from('users')
           .insert({
-            'username': username,
+            'name': username,
             'email': email,
           })
           .select();
@@ -94,7 +94,7 @@ class _HomePageState extends ConsumerState<HomePage> {
             children: [
               TextField(
                 controller: _usernameController,
-                decoration: const InputDecoration(labelText: 'Username'),
+                decoration: const InputDecoration(labelText: 'name'),
               ),
               TextField(
                 controller: _emailController,
@@ -131,7 +131,7 @@ class _HomePageState extends ConsumerState<HomePage> {
             itemCount: data.length,
             itemBuilder: (context, index) {
               return ListTile(
-                title: Text(data[index]['username'] ?? 'No Username'),
+                title: Text(data[index]['name'] ?? 'No Username'),
                 subtitle: Text(data[index]['email']),
               );
             },
